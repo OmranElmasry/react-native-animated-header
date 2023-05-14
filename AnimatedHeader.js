@@ -10,6 +10,7 @@ type Props = {
   title?: string;
   renderLeft?: () => React.Component;
   renderRight?: () => React.Component;
+  onScrollCallback?: (e) => void;
   backStyle?: any;
   backTextStyle?: any;
   titleStyle?: any;
@@ -25,6 +26,7 @@ export default class AnimatedHeader extends React.PureComponent<Props> {
   
   _onScroll = (e) => {
     this.header.onScroll(e);
+    this.props.onScrollCallback(e)
   }
 
   render() {
@@ -40,7 +42,7 @@ export default class AnimatedHeader extends React.PureComponent<Props> {
     const child = React.cloneElement(arr[0], {
       style: { ...style, flex: 1, },
       ref: (r) => this.scrollView = r,
-      scrollEventThrottle: 16,
+      scrollEventThrottle: 128,
       onScroll: this._onScroll,
       contentContainerStyle: { ...contentContainerStyle, paddingTop: headerMaxHeight || 200,  },
       ...rest
