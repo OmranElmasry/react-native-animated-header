@@ -26,8 +26,8 @@ export default class AnimatedHeader extends React.PureComponent<Props> {
   
   _onScroll = (e) => {
     this.header.onScroll(e);
-    if (!!this.props.onScrollCallback) 
-      this.props.onScrollCallback(e)
+    if (!!this?.props?.onScrollCallback) 
+      this?.props?.onScrollCallback?.(e)
   }
 
   render() {
